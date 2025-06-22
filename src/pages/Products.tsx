@@ -1,12 +1,12 @@
 // pages/Products.tsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { products } from "../data/products";
 import type { Product } from "../types/product";
 import { addToCart } from "../services/cartService";
-import { HiOutlineShoppingBag } from "react-icons/hi2";
 import toast from "react-hot-toast";
 import "../styles/products.scss";
+import ProductsHeader from "../components/ProductsHeader";
+import ProductList from "../components/ProductList";
 
 const Products = () => {
   const [username, setUsername] = useState<string | null>("");
@@ -49,38 +49,9 @@ const Products = () => {
 
   return (
     <div className="products-container">
-      <header className="products-header">
-        <h1 className="username">{username}</h1>
-        <button className="button logout" onClick={handleLogout}>
-          Logout
-        </button>
-      </header>
-
-      <main className="products-grid">
-        {products.map((product) => (
-          <article key={product.id} className="product-card">
-            <img src={product.image} alt={product.title} />
-            <div className="add-to-cart-overlay">
-              <button
-                className="add-to-cart-btn"
-                onClick={() => handleAddToCart(product)}
-              >
-                კალათაში დამატება
-              </button>
-            </div>
-            <h2>{product.title}</h2>
-            <p>{product.author}</p>
-            <div className="product-price">
-              <p>${product.price}</p>
-              <HiOutlineShoppingBag
-                color="#000000"
-                size={25}
-                onClick={() => handleAddToCart(product)}
-              />
-            </div>
-          </article>
-        ))}
-      </main>
+      <ProductsHeader handleLogout={handleLogout} username={username} />
+      <hr />
+      <ProductList handleAddToCart={handleAddToCart} />
     </div>
   );
 };

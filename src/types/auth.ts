@@ -9,7 +9,13 @@ export interface LoginResponse {
   email: string;
   firstName: string;
   lastName: string;
-  gender: string;
   image: string;
   token: string;
+}
+
+export interface UserFormProps {
+  formData: LoginPayload;
+  error: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleLogin: () => void;
 }
