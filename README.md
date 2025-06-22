@@ -16,8 +16,8 @@ To sign in, users must enter valid credentials that match an existing user on th
 Example test credentials:
 
 ```txt
-Username: kminchelle
-Password: 0lelplR
+Username: emilys
+Password: emilyspass
 
 
 ## 📋 Project Overview
