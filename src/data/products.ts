@@ -6,7 +6,7 @@ export const products: Product[] = [
     title: "კოლიმური მოთხრობები",
     author: "ვარლამ შალამოვი",
     price: 10.99,
-    image: "/src/assets/kolimuri.jpg",
+    image: "../assets/kolimuri.jpg",
   },
   {
     id: 2,
