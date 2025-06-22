@@ -12,7 +12,7 @@ const Login = () => {
   });
 
   const [error, setError] = useState<string>("");
-  const [token, setToken] = useState<string>("");
+  const [, setToken] = useState<string>("");
 
   const navigate = useNavigate();
 
@@ -38,8 +38,12 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify(data));
       setError("");
       navigate("/products");
-    } catch (err: any) {
-      setError(err.message || "Login failed");
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Login failed");
+      }
     }
   };
 
