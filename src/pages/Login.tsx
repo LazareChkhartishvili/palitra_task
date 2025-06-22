@@ -1,11 +1,9 @@
-import { useState } from "react";
-import { loginUser } from "../services/authService";
-
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import loginImage from "../assets/login_img.png";
-import "./login.scss";
+import { loginUser } from "../services/authService";
 import type { LoginPayload } from "../types/auth";
+
+import "./login.scss";
 
 const Login = () => {
   const [formData, setFormData] = useState<LoginPayload>({
@@ -13,10 +11,17 @@ const Login = () => {
     password: "",
   });
 
-  const navigate = useNavigate();
-
   const [error, setError] = useState<string>("");
   const [token, setToken] = useState<string>("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/products");
+    }
+  }, [navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
@@ -30,58 +35,97 @@ const Login = () => {
       const data = await loginUser(formData);
       setToken(data.token);
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data)); // ← ინახავს იუზერის ინფორმაციას
+      localStorage.setItem("user", JSON.stringify(data));
       setError("");
-      navigate("/products"); // ← გადააქვს products გვერდზე
+      navigate("/products");
     } catch (err: any) {
-      setError(err.message);
+      setError(err.message || "Login failed");
     }
   };
 
   return (
     <div className="login-page">
-      <div className="form-section">
-        <h1>WELCOME BACK</h1>
-        <p className="subtitle">Welcome back! Please enter your details.</p>
+      <section className="login-page__form-section">
+        <div className="login-page__form-wrapper">
+          <h1 className="login-page__title">WELCOME BACK</h1>
+          <p className="login-page__subtitle">
+            Welcome back! Please enter your details.
+          </p>
 
-        <label>Username</label>
-        <input
-          type="text"
-          name="username"
-          placeholder="Enter your username"
-          value={formData.username}
-          onChange={handleChange}
-        />
+          <form
+            className="login-page__form"
+            autoComplete="off"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleLogin();
+            }}
+          >
+            <div className="login-page__field">
+              <label htmlFor="username" className="login-page__label">
+                Username
+              </label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                className="login-page__input"
+                placeholder="Enter your username"
+                autoComplete="username"
+              />
+            </div>
 
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="**********"
-          value={formData.password}
-          onChange={handleChange}
-        />
+            <div className="login-page__field">
+              <label htmlFor="password" className="login-page__label">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="login-page__input"
+                placeholder="************"
+                autoComplete="current-password"
+              />
+            </div>
 
-        <div className="options">
-          <label>
-            <input type="checkbox" /> Remember me
-          </label>
-          <a href="#">Forgot password</a>
+            {error && (
+              <p className="login-page__error" style={{ color: "red" }}>
+                {error}
+              </p>
+            )}
+
+            <div className="login-page__options">
+              <label className="login-page__checkbox-label">
+                <input type="checkbox" className="login-page__checkbox" />
+                <span className="custom-checkbox"></span>
+                <span>Remember me</span>
+              </label>
+              <a href="#" className="login-page__forgot">
+                Forgot password
+              </a>
+            </div>
+
+            <button type="submit" className="login-page__submit-btn">
+              Sign in
+            </button>
+          </form>
+
+          <div className="login-page__footer">
+            <span>Don't have an account?</span>
+            <a href="#" className="login-page__signup-link">
+              Sign up to free!
+            </a>
+          </div>
         </div>
+      </section>
 
-        <button className="sign-in" onClick={handleLogin}>
-          Sign in
-        </button>
-
-        {error && <p style={{ color: "red" }}>{error}</p>}
-
-        <p className="signup">
-          Don’t have an account? <span>Sign up for free!</span>
-        </p>
-      </div>
-      <div className="illustration-section">
-        <img src={loginImage} alt="login illustration" />
-      </div>
+      <section className="login-page__image-section">
+        <div className="login-page__image-bg"></div>
+      </section>
     </div>
   );
 };
