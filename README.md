@@ -3,7 +3,7 @@
 Welcome to **React Products Shop**, a sleek and modern e-commerce interface built with **React** and **TypeScript**. Enjoy a seamless shopping experience with animated product displays, secure login, and a dynamic cart system — all wrapped in a clean, modular, and reusable codebase.
 
 ---
-
+```txt
 ## 🔐 Authentication Powered by DummyJSON
 
 This project uses the [DummyJSON API](https://dummyjson.com/) to simulate real-world authentication and provide a realistic development experience.
@@ -15,7 +15,7 @@ To sign in, users must enter valid credentials that match an existing user on th
 
 Example test credentials:
 
-```txt
+
 Username: emilys
 Password: emilyspass
 
