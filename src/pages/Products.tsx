@@ -7,7 +7,9 @@ import CartModal from "../components/CartModal";
 import { CiShoppingCart } from "react-icons/ci";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import "./../styles/products.scss";
+
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 const Products = () => {
   const [username, setUsername] = useState<string | null>("");
@@ -48,7 +50,7 @@ const Products = () => {
     if (userId === null) return;
     addToCart(userId, product);
     setCartProducts(getCart(userId));
-    alert(`Added "${product.title}" to cart`);
+    toast.success(`"${product.title}" დაემატა კალათაში`);
   };
 
   const openCart = () => {

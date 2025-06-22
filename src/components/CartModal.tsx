@@ -3,6 +3,7 @@ import { removeFromCart } from "../services/cartService";
 import "./../styles/modal.scss";
 
 import { IoMdClose } from "react-icons/io";
+import toast from "react-hot-toast";
 
 interface CartModalProps {
   isOpen: boolean;
@@ -25,6 +26,7 @@ const CartModal = ({
     if (userId === null) return;
     removeFromCart(userId, productId);
     refreshCart();
+    toast.success(`აფსუს, რა წიგნი წაშალეე...`);
   };
 
   const totalPrice = products.reduce((sum, product) => sum + product.price, 0);

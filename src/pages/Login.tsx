@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
 import type { LoginPayload } from "../types/auth";
 
-import "./login.scss";
+import "../styles/login.scss";
 
 const Login = () => {
   const [formData, setFormData] = useState<LoginPayload>({
