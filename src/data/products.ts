@@ -29,4 +29,18 @@ export const products: Product[] = [
     price: 10.99,
     image: "/src/assets/paramo.jpg",
   },
+  {
+    id: 5,
+    title: "მრისხანების მტევნები",
+    author: "ჯონ სტაინბეკი",
+    price: 16.99,
+    image: "/src/assets/stain.jpg",
+  },
+  {
+    id: 6,
+    title: "გველის პერანგი",
+    author: "გრიგოლ რობაქიძე",
+    price: 13.99,
+    image: "/src/assets/grigol.jpg",
+  },
 ];

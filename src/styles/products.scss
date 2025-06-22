@@ -26,8 +26,8 @@
   transition: background-color 0.3s ease;
 
   &.logout {
-    background-color: #dc2626;
-    color: white;
+    // background-color: #dc2626;
+    color: black;
     border: none;
 
     &:hover {
@@ -36,17 +36,15 @@
   }
 
   &.cart {
-    background-color: #facc15;
+    // background-color: #facc15;
     color: black;
     border: none;
-
-    &:hover {
-      background-color: #eab308;
-    }
   }
 }
 
 .products-grid {
+  margin-top: 40px;
+  padding: 10px 25px;
   display: grid;
   gap: 24px;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -59,6 +57,15 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.3s ease;
   cursor: pointer;
+
+  .product-price {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    color: #6c46aa;
+    font-weight: 500;
+  }
 
   &:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -88,21 +95,5 @@
     font-weight: 700;
     font-size: 1.1rem;
     margin-bottom: 12px;
-  }
-
-  button {
-    width: 100%;
-    padding: 10px 0;
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #1d4ed8;
-    }
   }
 }

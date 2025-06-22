@@ -5,6 +5,9 @@ import { addToCart, getCart, clearCart } from "../services/cartService";
 import type { Product } from "../types/product";
 import CartModal from "../components/CartModal";
 
+import { CiShoppingCart } from "react-icons/ci";
+import { HiOutlineShoppingBag } from "react-icons/hi2";
+
 import "./../styles/products.scss";
 
 const Products = () => {
@@ -49,10 +52,11 @@ const Products = () => {
   return (
     <div className="products-container">
       <header className="products-header">
-        <h1 className="username">Welcome, {username}!</h1>
+        <h1 className="username">{username}</h1>
         <div className="buttons-group">
           <button className="button cart" onClick={openCart}>
-            View Cart ({cartProducts.length})
+            <CiShoppingCart size={40} />
+            {cartProducts.length > 0 && cartProducts.length}
           </button>
           <button className="button logout" onClick={handleLogout}>
             Logout
@@ -66,10 +70,13 @@ const Products = () => {
             <img src={product.image} alt={product.title} />
             <h2>{product.title}</h2>
             <p>{product.author}</p>
-            <p>${product.price}</p>
-            <button onClick={() => handleAddToCart(product)}>
-              კალათაში დამატება
-            </button>
+            <div className="product-price">
+              <p>${product.price}</p>
+              <HiOutlineShoppingBag
+                size={25}
+                onClick={() => handleAddToCart(product)}
+              />
+            </div>
           </article>
         ))}
       </main>
