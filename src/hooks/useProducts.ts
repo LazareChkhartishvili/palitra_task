@@ -1,4 +1,3 @@
-// hooks/useProducts.ts
 import { useState, useEffect } from "react";
 import { addToCart } from "../services/cartService";
 import toast from "react-hot-toast";

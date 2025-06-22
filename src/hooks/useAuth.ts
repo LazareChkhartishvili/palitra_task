@@ -1,4 +1,3 @@
-// hooks/useAuth.ts
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
