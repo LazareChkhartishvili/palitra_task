@@ -43,4 +43,25 @@ export const products: Product[] = [
     price: 13.99,
     image: "../assets/grigol.jpg",
   },
+  {
+    id: 7,
+    title: "ზებულონი",
+    author: "ჯემალ ქარჩხაძე",
+    price: 14.99,
+    image: "../assets/zebuloni.jpg",
+  },
+  {
+    id: 8,
+    title: "ქარიშხლების სეზონი",
+    author: "ფერნანდა მელჩორი",
+    price: 11.99,
+    image: "../assets/melchor.webp",
+  },
+  {
+    id: 9,
+    title: "1984",
+    author: "ჯორჯ ორუელი",
+    price: 19.84,
+    image: "../assets/1984.jpeg",
+  },
 ];
