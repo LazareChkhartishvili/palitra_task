@@ -16,3 +16,10 @@ export const clearCart = (userId: number) => {
   const key = `cart_${userId}`;
   localStorage.removeItem(key);
 };
+
+export const removeFromCart = (userId: number, productId: number) => {
+  const key = `cart_${userId}`;
+  const cart: Product[] = JSON.parse(localStorage.getItem(key) || "[]");
+  const updatedCart = cart.filter((item) => item.id !== productId);
+  localStorage.setItem(key, JSON.stringify(updatedCart));
+};
