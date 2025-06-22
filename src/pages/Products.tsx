@@ -10,6 +10,7 @@ import ProductList from "../components/ProductList";
 
 const Products = () => {
   const [username, setUsername] = useState<string | null>("");
+  const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<number | null>(null);
   const [token, setToken] = useState<string>("");
   const navigate = useNavigate();
@@ -27,6 +28,10 @@ const Products = () => {
     setUsername(parsedUser.firstName);
     setUserId(parsedUser.id);
     setToken(tokenStored);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, [navigate]);
 
   const handleAddToCart = async (product: Product) => {
@@ -51,7 +56,7 @@ const Products = () => {
     <div className="products-container">
       <ProductsHeader handleLogout={handleLogout} username={username} />
       <hr />
-      <ProductList handleAddToCart={handleAddToCart} />
+      <ProductList handleAddToCart={handleAddToCart} loading={loading} />
     </div>
   );
 };
