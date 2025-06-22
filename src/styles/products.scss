@@ -1,46 +1,80 @@
 .products-header {
   display: flex;
-  margin-bottom: 32px;
   align-items: center;
   justify-content: flex-end;
-  gap: 40px;
-  padding: 20px;
+  gap: 32px;
+  padding: 24px;
+  background: linear-gradient(180deg, #fafafa, #ffffff);
+  margin-bottom: 20px;
 }
 
 .username {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: #2d3436;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.01em;
 }
 
 .buttons-group {
   display: flex;
-  gap: 16px;
+  gap: 12px;
 }
 
 .button {
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &.logout {
-    color: black;
-    border: none;
-
-    &:hover {
-      background-color: #b91c1c;
-      color: white;
-    }
-  }
-
-  &.cart {
-    color: black;
-    border: none;
-    position: relative;
-  }
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  transition: all 0.3s ease-in-out;
 }
 
+.button.cart {
+  position: relative;
+  background-color: #dfe6e9;
+  color: #2d3436;
+}
+
+.button.cart:hover {
+  background-color: #b2bec3;
+  transform: translateY(-1px);
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #e17055;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+}
+
+.button.logout {
+  background-color: #ffffff;
+  color: #e17055;
+  border: 1px solid #e17055;
+}
+
+.button.logout:hover {
+  background-color: #e17055;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
 .products-grid {
   margin-top: 40px;
   padding: 10px 25px;
@@ -83,6 +117,10 @@
     font-weight: 700;
     margin-bottom: 6px;
     color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
   }
 
   p {
@@ -158,4 +196,57 @@
       }
     }
   }
+}
+
+// /* From Uiverse.io by alexruix */
+/* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  --background: #28096b;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background);
+  transition: 0.5s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 50%;
+  left: 10%;
+  bottom: 15%;
+  box-shadow: inset 8px -4px 0px 0px #fff000;
+  background: var(--background);
+  transition: 0.5s;
+}
+
+input:checked + .slider {
+  background-color: #522ba7;
+}
+
+input:checked + .slider:before {
+  transform: translateX(100%);
+  box-shadow: inset 15px -4px 0px 15px #fff000;
 }

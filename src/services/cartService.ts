@@ -1,25 +1,31 @@
-import type { Product } from "../types/product";
+export const addToCart = async (
+  userId: number,
+  productId: number,
+  quantity = 1,
+  token: string
+) => {
+  const response = await fetch("https://dummyjson.com/carts/add", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      userId,
+      products: [
+        {
+          id: productId,
+          quantity,
+        },
+      ],
+    }),
+  });
 
-export const addToCart = (userId: number, product: Product) => {
-  const key = `cart_${userId}`;
-  const cart = JSON.parse(localStorage.getItem(key) || "[]");
-  cart.push(product);
-  localStorage.setItem(key, JSON.stringify(cart));
-};
+  const data = await response.json();
 
-export const getCart = (userId: number): Product[] => {
-  const key = `cart_${userId}`;
-  return JSON.parse(localStorage.getItem(key) || "[]");
-};
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to add to cart");
+  }
 
-export const clearCart = (userId: number) => {
-  const key = `cart_${userId}`;
-  localStorage.removeItem(key);
-};
-
-export const removeFromCart = (userId: number, productId: number) => {
-  const key = `cart_${userId}`;
-  const cart: Product[] = JSON.parse(localStorage.getItem(key) || "[]");
-  const updatedCart = cart.filter((item) => item.id !== productId);
-  localStorage.setItem(key, JSON.stringify(updatedCart));
+  return data;
 };

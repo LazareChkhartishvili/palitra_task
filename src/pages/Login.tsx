@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
 import type { LoginPayload } from "../types/auth";
-
+import toast from "react-hot-toast";
 import "../styles/login.scss";
 
 const Login = () => {
@@ -10,40 +10,30 @@ const Login = () => {
     username: "",
     password: "",
   });
-
   const [error, setError] = useState<string>("");
-  const [, setToken] = useState<string>("");
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
+    if (localStorage.getItem("token")) {
       navigate("/products");
     }
   }, [navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleLogin = async () => {
     try {
       const data = await loginUser(formData);
-      setToken(data.token);
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data));
       setError("");
       navigate("/products");
+      toast.success("მოგესალმებით, დალოგინდით წარმატებით!");
     } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Login failed");
-      }
+      if (err instanceof Error) setError(err.message);
+      else setError("შეცდომა დალოგინებისას");
     }
   };
 
